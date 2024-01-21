@@ -1,11 +1,11 @@
 #include "monty.h"
 
 /**
- * _sub - sub top of stack y second top stack
- * @stack: pointer to lists for monty stack
- * @line_number: number of line opcode occurs on
+ * fun_sub - sub top of stack y second top stacks
+ * @stack: pointer to lists for monty stacks
+ * @line_number: number of line opcode occurs on the stack
  */
-void _sub(stack_t **stack, unsigned int line_number)
+void fun_sub(stack_t **stack, unsigned int line_number)
 {
 	stack_t *tmp = *stack;
 	int sub = 0, i = 0;
@@ -16,11 +16,11 @@ void _sub(stack_t **stack, unsigned int line_number)
 		exit(EXIT_FAILURE);
 	}
 
-	while (tmp)
+	do
 	{
 		tmp = tmp->next;
 		i++;
-	}
+	}while (tmp);
 
 	if (stack == NULL || (*stack)->next == NULL || i <= 1)
 	{
@@ -34,11 +34,11 @@ void _sub(stack_t **stack, unsigned int line_number)
 }
 
 /**
- * _mul - mul top of stack y second top stack
- * @stack: pointer to lists for monty stack
- * @line_number: number of line opcode occurs on
+ * fun_mul - mul top of stack y second top stacks
+ * @stack: pointer to lists for monty stacks
+ * @line_number: number of line opcode occurs on the stacks
  */
-void _mul(stack_t **stack, unsigned int line_number)
+void fun_mul(stack_t **stack, unsigned int line_number)
 {
 	int aux;
 
@@ -59,11 +59,11 @@ void _mul(stack_t **stack, unsigned int line_number)
 }
 
 /**
- * _div - div top of stack y second top stack
- * @stack: pointer to lists for monty stack
- * @line_number: number of line opcode occurs on
+ * fun_div - div top of stack y second top stacks
+ * @stack: pointer to lists for monty stacks
+ * @line_number: number of line opcode occurs on the stacks
  */
-void _div(stack_t **stack, unsigned int line_number)
+void fun_div(stack_t **stack, unsigned int line_number)
 {
 	int div = 0;
 
@@ -92,11 +92,11 @@ void _div(stack_t **stack, unsigned int line_number)
 }
 
 /**
- * _mod - mod top of stack y second top stack
- * @stack: pointer to lists for monty stack
- * @line_number: number of line opcode occurs on
+ * fun_mod - mod top of stack y second top stacks
+ * @stack: pointer to lists for monty stacks
+ * @line_number: number of line opcode occurs on on the stacks
  */
-void _mod(stack_t **stack, unsigned int line_number)
+void fun_mod(stack_t **stack, unsigned int line_number)
 {
 	int mod = 0;
 

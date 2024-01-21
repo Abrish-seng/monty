@@ -1,16 +1,16 @@
 #include "monty.h"
 /**
- * _push - push int to a stack
- * @stack: linked lists for monty stack
- * @line_number: number of line opcode occurs on
+ * fun_push - push int to a stacks
+ * @stack: linked lists for monty stacks
+ * @line_number: number of line opcode occurs on stacks
  */
-void _push(stack_t **stack, __attribute__ ((unused))unsigned int line_number)
+void fun_push(stack_t **stack, unsigned int line_number)
 {
 	stack_t *top;
 	(void)line_number;
 
 	top = malloc(sizeof(stack_t));
-	if (top == NULL)
+	if (top == 0)
 	{
 		fprintf(stderr, "Error: malloc failed\n");
 		exit(EXIT_FAILURE);
@@ -25,29 +25,29 @@ void _push(stack_t **stack, __attribute__ ((unused))unsigned int line_number)
 }
 
 /**
- * _pall - print all function
- * @stack: pointer to linked list stack
- * @line_number: number of line opcode occurs on
+ * fun_pall - print all functions
+ * @stack: pointer to linked list stacks
+ * @line_number: number of line opcode occurs on stacks
  */
 void _pall(stack_t **stack, __attribute__ ((unused))unsigned int line_number)
 {
 	stack_t *runner;
 
 	runner = *stack;
-	while (runner != NULL)
+	do
 	{
 		printf("%d\n", runner->n);
 		runner = runner->next;
-	}
+	}while (runner != NULL);
 }
 
 /**
- * _pint - print int a top of stack
- * @stack: pointer to linked list stack
- * @line_number: number of line opcode occurs on
+ * fun_pint - print int a top of stacks
+ * @stack: pointer to linked list stacks
+ * @line_number: number of line opcode occurs on stacks
  *
  */
-void _pint(stack_t **stack, unsigned int line_number)
+void fun_pint(stack_t **stack, unsigned int line_number)
 {
 	stack_t *runner;
 
@@ -61,12 +61,12 @@ void _pint(stack_t **stack, unsigned int line_number)
 }
 
 /**
- * _pop - remove element a list
- *@stack: pointer to first node
- *@line_number: integer
+ * fun_pop - remove element a lists
+ *@stack: pointer to first node of the stack
+ *@line_number: integers
  *Return: void
  */
-void _pop(stack_t **stack, unsigned int line_number)
+void fun_pop(stack_t **stack, unsigned int line_number)
 {
 	stack_t *nodo = *stack;
 
@@ -82,18 +82,18 @@ void _pop(stack_t **stack, unsigned int line_number)
 }
 
 /**
- * free_dlistint - free a list
- * @head: pointer to first node
+ * free_dlistint - free a lists
+ * @head: pointer to first node of the stack
  *
  */
 void free_dlistint(stack_t *head)
 {
 	stack_t *tmp;
 
-	while (head != NULL)
+	do
 	{
 		tmp = head->next;
 		free(head);
 		head = tmp;
-	}
+	}while (head != NULL);
 }
