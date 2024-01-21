@@ -55,10 +55,11 @@ typedef struct global_variable
 
 extern global_var var_global;
 
-void read_file(char *file_name, stack_t **stack);
-char *parse_line(char *line, stack_t **stack, unsigned int line_number);
+void read_files(char *file_name, stack_t **stack);
+char *parse_lines(char *line, stack_t **stack, unsigned int line_number);
 typedef void (*instruct_func)(stack_t **stack, unsigned int line_number);
 instruct_func get_op_func(char *str);
+int isnumbers(char *strr)
 
 /*Fuxntions Monty*/
 void fun_pall(stack_t **stack, unsigned int line_number);
@@ -71,8 +72,8 @@ void fun_rotl(stack_t **stack, unsigned int line_number);
 void fun_rotr(stack_t **stack, unsigned int line_number);
 
 /*Functions string ascci */
-void fun_pchar(stack_t **stack, unsigned int line_number);
-void fun_pstr(stack_t **stack, unsigned int line_number);
+void _pchar(stack_t **stack, unsigned int line_number);
+void _pstr(stack_t **stack, unsigned int line_number);
 
 /*Functions math*/
 void fun_sub(stack_t **stack, unsigned int line_number);
@@ -82,8 +83,8 @@ void fun_div(stack_t **stack, unsigned int line_number);
 void fun_mod(stack_t **stack, unsigned int line_number);
 
 /*Utility functions*/
-void free_dlistint(stack_t *head);
+void free_dlistints(stack_t *head);
 void dobfree(stack_t **stack);
 void dobfree2(stack_t **stack);
-int fun_isalpha(int num);
+int fun_isalpha(int c);
 #endif

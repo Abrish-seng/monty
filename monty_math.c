@@ -16,11 +16,11 @@ void fun_sub(stack_t **stack, unsigned int line_number)
 		exit(EXIT_FAILURE);
 	}
 
-	do
+	while (tmp)
 	{
 		tmp = tmp->next;
 		i++;
-	}while (tmp);
+	}
 
 	if (stack == NULL || (*stack)->next == NULL || i <= 1)
 	{
@@ -36,7 +36,7 @@ void fun_sub(stack_t **stack, unsigned int line_number)
 /**
  * fun_mul - mul top of stack y second top stacks
  * @stack: pointer to lists for monty stacks
- * @line_number: number of line opcode occurs on the stacks
+ * @line_number: number of line opcode occurs on the stack
  */
 void fun_mul(stack_t **stack, unsigned int line_number)
 {
@@ -94,7 +94,7 @@ void fun_div(stack_t **stack, unsigned int line_number)
 /**
  * fun_mod - mod top of stack y second top stacks
  * @stack: pointer to lists for monty stacks
- * @line_number: number of line opcode occurs on on the stacks
+ * @line_number: number of line opcode occurs on the stack
  */
 void fun_mod(stack_t **stack, unsigned int line_number)
 {

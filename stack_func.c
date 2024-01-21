@@ -1,99 +1,114 @@
 #include "monty.h"
 /**
- * fun_push - push int to a stacks
- * @stack: linked lists for monty stacks
- * @line_number: number of line opcode occurs on stacks
+ * fun_swap - swap top of stack y second top stacks
+ * @stack: pointer to lists for monty stacks
+ * @line_number: number of line opcode occurs on the stack
  */
-void fun_push(stack_t **stack, unsigned int line_number)
-{
-	stack_t *top;
-	(void)line_number;
 
-	top = malloc(sizeof(stack_t));
-	if (top == 0)
+void fun_swap(stack_t **stack, unsigned int line_number)
+{
+	stack_t *runner;
+	int tmp;
+
+	runner = *stack;
+	if (runner == NULL || runner->next == NULL)
 	{
-		fprintf(stderr, "Error: malloc failed\n");
+		fprintf(stderr, "L%d: can't swap, stack too short\n", line_number);
+		exit(EXIT_FAILURE);
+	}
+	tmp = runner->n;
+	runner->n = runner->next->n;
+	runner->next->n = tmp;
+}
+
+/**
+ * fun_add - add top of stack y second top stacks
+ * @stack: pointer to lists for monty stacks
+ * @line_number: number of line opcode occurs on the stacks
+ */
+
+void fun_add(stack_t **stack, unsigned int line_number)
+{
+	stack_t *tmp = *stack;
+	int sum = 0, i = 0;
+
+	if (tmp == NULL)
+	{
+		fprintf(stderr, "L%d: can't add, stack too short\n", line_number);
 		exit(EXIT_FAILURE);
 	}
 
-	top->n = var_global.push_arg;
-	top->next = *stack;
-	top->prev = NULL;
-	if (*stack != NULL)
-		(*stack)->prev = top;
-	*stack = top;
-}
-
-/**
- * fun_pall - print all functions
- * @stack: pointer to linked list stacks
- * @line_number: number of line opcode occurs on stacks
- */
-void _pall(stack_t **stack, __attribute__ ((unused))unsigned int line_number)
-{
-	stack_t *runner;
-
-	runner = *stack;
-	do
+	while (tmp)
 	{
-		printf("%d\n", runner->n);
-		runner = runner->next;
-	}while (runner != NULL);
+		tmp = tmp->next;
+		i++;
+	}
+
+	if (stack == NULL || (*stack)->next == NULL || i <= 1)
+	{
+		fprintf(stderr, "L%d: can't add, stack too short\n", line_number);
+		exit(EXIT_FAILURE);
+	}
+	sum = (*stack)->next->n + (*stack)->n;
+	_pop(stack, line_number);
+
+	(*stack)->n = sum;
 }
 
 /**
- * fun_pint - print int a top of stacks
- * @stack: pointer to linked list stacks
- * @line_number: number of line opcode occurs on stacks
+ * fun_nop - nop top of stack y second top stacks
+ * @stack: pointer to lists for monty stacks
+ * @line_number: number of line opcode occurs on the stack
+ */
+
+void fun_nop(__attribute__ ((unused))stack_t **stack,
+		__attribute__ ((unused)) unsigned int line_number)
+{
+	;
+}
+
+/**
+ * fun_pchar - prints the ASCII value of a numbers
+ * @stack: pointer to the top of the stacks
+ * @line_number: the index of the current lines
  *
  */
-void fun_pint(stack_t **stack, unsigned int line_number)
+void fun_pchar(stack_t **stack, unsigned int line_number)
 {
-	stack_t *runner;
-
-	runner = *stack;
-	if (runner == NULL)
-	{
-		fprintf(stderr, "L%d: can't pint, stack empty\n", line_number);
-		exit(EXIT_FAILURE);
-	}
-	printf("%d\n", runner->n);
-}
-
-/**
- * fun_pop - remove element a lists
- *@stack: pointer to first node of the stack
- *@line_number: integers
- *Return: void
- */
-void fun_pop(stack_t **stack, unsigned int line_number)
-{
-	stack_t *nodo = *stack;
+	int val;
 
 	if (stack == NULL || *stack == NULL)
 	{
-		fprintf(stderr, "L%d: can't pop an empty stack\n", line_number);
+		fprintf(stderr, "L%d: can't pchar, stack empty\n", line_number);
+		free(var_global.buffer);
+		fclose(var_global.file);
+		free_dlistint(*stack);
 		exit(EXIT_FAILURE);
 	}
-	*stack = nodo->next;
-	if (*stack != NULL)
-		(*stack)->prev = NULL;
-	free(nodo);
+
+	val = (*stack)->n;
+	if (val > 127 || val < 0)
+	{
+		fprintf(stderr, "L%d: can't pchar, value out of range\n", line_number);
+		free(var_global.buffer);
+		fclose(var_global.file);
+		free_dlistint(*stack);
+		exit(EXIT_FAILURE);
+	}
+
+	putchar(val);
+	putchar('\n');
 }
 
 /**
- * free_dlistint - free a lists
- * @head: pointer to first node of the stack
- *
+ * fun_isalpha - checks if int is in alphabets
+ * @c: integer
+ * Return: 1 if yes, 0 if no
  */
-void free_dlistint(stack_t *head)
+int fun_isalpha(int c)
 {
-	stack_t *tmp;
-
-	do
-	{
-		tmp = head->next;
-		free(head);
-		head = tmp;
-	}while (head != NULL);
+	if ((c >= 97 && c <= 122) || (c >= 65 && c <= 90))
+		return (1);
+	else
+		return (0);
 }
