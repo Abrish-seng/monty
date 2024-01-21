@@ -15,7 +15,7 @@ int main(int ac, char **avg)
 		fprintf(stderr, "USAGE: monty file\n");
 		exit(EXIT_FAILURE);
 	}
-	read_file(avg[1], &stack);
-	free_dlistint(stack);
+	read_files(avg[1], &stack);
+	free_dlistints(stack);
 	return (0);
 }

@@ -59,7 +59,7 @@ void read_files(char *file_name, stack_t **stack);
 char *parse_lines(char *line, stack_t **stack, unsigned int line_number);
 typedef void (*instruct_func)(stack_t **stack, unsigned int line_number);
 instruct_func get_op_func(char *str);
-int isnumbers(char *strr)
+int isnumbers(char *strr);
 
 /*Fuxntions Monty*/
 void fun_pall(stack_t **stack, unsigned int line_number);
@@ -72,8 +72,8 @@ void fun_rotl(stack_t **stack, unsigned int line_number);
 void fun_rotr(stack_t **stack, unsigned int line_number);
 
 /*Functions string ascci */
-void _pchar(stack_t **stack, unsigned int line_number);
-void _pstr(stack_t **stack, unsigned int line_number);
+void fun_pchar(stack_t **stack, unsigned int line_number);
+void fun_pstr(stack_t **stack, unsigned int line_number);
 
 /*Functions math*/
 void fun_sub(stack_t **stack, unsigned int line_number);

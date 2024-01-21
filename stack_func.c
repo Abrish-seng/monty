@@ -50,7 +50,7 @@ void fun_add(stack_t **stack, unsigned int line_number)
 		exit(EXIT_FAILURE);
 	}
 	sum = (*stack)->next->n + (*stack)->n;
-	_pop(stack, line_number);
+	fun_pop(stack, line_number);
 
 	(*stack)->n = sum;
 }
@@ -82,7 +82,7 @@ void fun_pchar(stack_t **stack, unsigned int line_number)
 		fprintf(stderr, "L%d: can't pchar, stack empty\n", line_number);
 		free(var_global.buffer);
 		fclose(var_global.file);
-		free_dlistint(*stack);
+		free_dlistints(*stack);
 		exit(EXIT_FAILURE);
 	}
 
@@ -92,7 +92,7 @@ void fun_pchar(stack_t **stack, unsigned int line_number)
 		fprintf(stderr, "L%d: can't pchar, value out of range\n", line_number);
 		free(var_global.buffer);
 		fclose(var_global.file);
-		free_dlistint(*stack);
+		free_dlistints(*stack);
 		exit(EXIT_FAILURE);
 	}
 

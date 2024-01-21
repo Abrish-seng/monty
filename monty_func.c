@@ -24,7 +24,7 @@ void read_files(char *file_name, stack_t **stack)
 
 	while ((read = getline(&var_global.buffer, &i, var_global.file)) != -1)
 	{
-		line = parse_line(var_global.buffer, stack, line_count);
+		line = parse_lines(var_global.buffer, stack, line_count);
 		if (line == NULL || line[0] == '#')
 		{
 			line_count++;
@@ -128,7 +128,7 @@ char *parse_lines(char *line, stack_t **stack, unsigned int line_number)
 	if (strcmp(op_code, push) == 0)
 	{
 		args = strtok(NULL, "\n ");
-		if (isnumber(args) == 1 && args != NULL)
+		if (isnumbers(args) == 1 && args != NULL)
 		{
 			var_global.push_arg = atoi(args);
 		}
